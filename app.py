@@ -35,7 +35,28 @@ try:
     df = pd.DataFrame(dados, columns=colunas)
 
     st.subheader("📍 Dados de Itu")
-    st.dataframe(df)
+        
+    opcao = st.selectbox(
+        "Como deseja visualizar os dados?",
+        ["Tabela", "Gráfico de barras", "Gráfico de pizza"]
+    )
+
+    if opcao == "Tabela":
+        st.dataframe(df)
+
+    elif opcao == "Gráfico de barras":
+        dados_grafico = df.T.reset_index()
+        dados_grafico.columns = ['Categoria', 'Valor']
+        st.bar_chart(data=dados_grafico, x='Categoria', y='Valor')
+
+    elif opcao == "Gráfico de pizza":
+        dados_grafico = df.T.reset_index()
+        dados_grafico.columns = ['Categoria', 'Valor']
+        st.write("Distribuição por categoria")
+        st.pyplot(
+            pd.Series(dados_grafico['Valor'].values, index=dados_grafico['Categoria']).plot.pie(autopct='%1.1f%%', figsize=(6, 6)).figure
+        )
+
 
     st.subheader("👥 População estimada - IBGE (API)")
 
