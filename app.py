@@ -48,7 +48,8 @@ try:
         municipio = data[0]['resultados'][0]['series'][0]['localidade']['nome']
         valor = data[0]['resultados'][0]['series'][0]['serie']['2021']
 
-        st.metric(label=f"População de {municipio} (2021)", value=f"{valor:,}".replace(",", "."))
+        st.metric(label=f"População de {municipio} (2021)", value=f"{int(valor):,}".replace(",", "."))
+
 
     except Exception as e:
         st.error(f"Erro ao consultar a API do IBGE: {e}")
