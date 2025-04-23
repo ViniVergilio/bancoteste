@@ -1,5 +1,6 @@
 import streamlit as st
 import mysql.connector
+import requests
 import pandas as pd
 
 # Configurações da conexão
@@ -35,6 +36,23 @@ try:
 
     st.subheader("📍 Dados de Itu")
     st.dataframe(df)
+
+    st.subheader("👥 População estimada - IBGE (API)")
+
+    url = "https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/2021/variaveis/9324?localidades=N6[3523909]"
+
+    try:
+        res = requests.get(url)
+        data = res.json()
+
+        municipio = data[0]['resultados'][0]['series'][0]['localidade']['nome']
+        valor = data[0]['resultados'][0]['series'][0]['serie']['2021']
+
+        st.metric(label=f"População de {municipio} (2021)", value=f"{valor:,}".replace(",", "."))
+
+    except Exception as e:
+        st.error(f"Erro ao consultar a API do IBGE: {e}")
+
 
 except Exception as e:
     st.error(f"Erro: {e}")
