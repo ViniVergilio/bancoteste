@@ -2,6 +2,7 @@ import streamlit as st
 import mysql.connector
 import requests
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # Configurações da conexão
 config = {
@@ -47,8 +48,15 @@ try:
     elif opcao == "Gráfico de barras":
         dados_grafico = df.T.reset_index()
         dados_grafico.columns = ['Categoria', 'Valor']
-        st.bar_chart(data=dados_grafico, x='Categoria', y='Valor')
+        fig, ax = plt.subplots()
+        ax.bar(dados_grafico['Categoria'], dados_grafico['Valor'], color='skyblue')
+        ax.set_ylabel('Quantidade')
+        ax.set_xlabel('Categoria')
+        ax.set_title('Distribuição por Escolaridade')
+        plt.xticks(rotation=45)
 
+        st.pyplot(fig)
+        
     elif opcao == "Gráfico de pizza":
         dados_grafico = df.T.reset_index()
         dados_grafico.columns = ['Categoria', 'Valor']
