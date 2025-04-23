@@ -54,6 +54,9 @@ try:
     except Exception as e:
         st.error(f"Erro ao consultar a API do IBGE: {e}")
 
+        st.subheader("📊 Indicadores Básicos - IBGE (API)")
+
+
 
 except Exception as e:
     st.error(f"Erro: {e}")
