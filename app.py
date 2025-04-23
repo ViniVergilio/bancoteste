@@ -57,6 +57,66 @@ try:
         st.subheader("📊 Indicadores Básicos - IBGE (API)")
 
 
+        st.subheader("📊 Indicadores Básicos - IBGE (API)")
+
+        indicadores = [
+            {
+                "titulo": "População total (2021)",
+                "url": "https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/2021/variaveis/9324?localidades=N6[3523909]",
+                "chave": "2021",
+                "prefixo": "",
+                "sufixo": " pessoas"
+            },
+            {
+                "titulo": "Renda média domiciliar (2022)",
+                "url": "https://servicodados.ibge.gov.br/api/v3/agregados/7060/periodos/2022/variaveis/93?localidades=N6[3523909]",
+                "chave": "2022",
+                "prefixo": "R$ ",
+                "sufixo": ""
+            },
+            {
+                "titulo": "Escolarização 6 a 14 anos (%)",
+                "url": "https://servicodados.ibge.gov.br/api/v3/agregados/6460/periodos/2022/variaveis/385?localidades=N6[3523909]",
+                "chave": "2022",
+                "prefixo": "",
+                "sufixo": "%"
+            },
+            {
+                "titulo": "Alfabetização 15+ anos (%)",
+                "url": "https://servicodados.ibge.gov.br/api/v3/agregados/6460/periodos/2022/variaveis/384?localidades=N6[3523909]",
+                "chave": "2022",
+                "prefixo": "",
+                "sufixo": "%"
+            },
+            {
+                "titulo": "Domicílios com água encanada (2010)",
+                "url": "https://servicodados.ibge.gov.br/api/v3/agregados/6083/periodos/2010/variaveis/83?localidades=N6[3523909]",
+                "chave": "2010",
+                "prefixo": "",
+                "sufixo": "%"
+            },
+            {
+                "titulo": "Domicílios permanentes (2010)",
+                "url": "https://servicodados.ibge.gov.br/api/v3/agregados/6083/periodos/2010/variaveis/80?localidades=N6[3523909]",
+                "chave": "2010",
+                "prefixo": "",
+                "sufixo": " domicílios"
+            }
+        ]
+
+        # Exibir em linhas de 3 colunas
+        for i in range(0, len(indicadores), 3):
+            cols = st.columns(3)
+            for j, item in enumerate(indicadores[i:i+3]):
+                try:
+                    resposta = requests.get(item["url"])
+                    data = resposta.json()
+                    valor = list(data[0]['resultados'][0]['series'][0]['serie'].values())[0]
+                    cols[j].metric(label=item["titulo"], value=f"{item['prefixo']}{valor}{item['sufixo']}")
+                except Exception as e:
+                    cols[j].error(f"Erro em {item['titulo']}")
+
+
 
 except Exception as e:
     st.error(f"Erro: {e}")
