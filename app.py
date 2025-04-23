@@ -54,12 +54,12 @@ try:
     except Exception as e:
         st.error(f"Erro ao consultar a API do IBGE: {e}")
 
-        st.subheader("📊 Indicadores Básicos - IBGE (API)")
+        
 
 
-        st.subheader("📊 Indicadores Básicos - IBGE (API)")
+    st.subheader("📊 Indicadores Básicos - IBGE (API)")
 
-        indicadores = [
+    indicadores = [
             {
                 "titulo": "População total (2021)",
                 "url": "https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/2021/variaveis/9324?localidades=N6[3523909]",
@@ -105,7 +105,7 @@ try:
         ]
 
         # Exibir em linhas de 3 colunas
-        for i in range(0, len(indicadores), 3):
+    for i in range(0, len(indicadores), 3):
             cols = st.columns(3)
             for j, item in enumerate(indicadores[i:i+3]):
                 try:
