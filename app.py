@@ -154,6 +154,15 @@ try:
 
 
 
+    st.markdown("""
+    <style>
+    div[data-baseweb="tag"] {
+        background-color: #2563eb !important;
+        color: white !important;
+        border-radius: 4px !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
         
 except Exception as e:
