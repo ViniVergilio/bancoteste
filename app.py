@@ -83,6 +83,16 @@ try:
     except Exception as e:
         st.error(f"Erro ao consultar a API do IBGE: {e}")
 
+
+
+
+
+        colunas = st.columns(len(linha))  # cria colunas horizontais
+
+        for i, (nome, valor) in enumerate(linha.items()):
+            colunas[i].metric(label=nome, value=f"{valor:,}".replace(",", "."))
+
+
         
 except Exception as e:
     st.error(f"Erro: {e}")
