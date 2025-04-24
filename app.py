@@ -87,10 +87,10 @@ try:
 
 
 
-        colunas = st.columns(len(linha))  # cria colunas horizontais
+    colunas = st.columns(len(linha))  # cria colunas horizontais
 
-        for i, (nome, valor) in enumerate(linha.items()):
-            colunas[i].metric(label=nome, value=f"{valor:,}".replace(",", "."))
+    for i, (nome, valor) in enumerate(linha.items()):
+        colunas[i].metric(label=nome, value=f"{valor:,}".replace(",", "."))
 
 
         
