@@ -43,7 +43,51 @@ try:
     )
 
     if opcao == "Tabela":
-        st.subheader("📊 Indicadores educacionais (Banco de Dados)")
+        st.dataframe(df)
+
+    elif opcao == "Gráfico de barras":
+        dados_grafico = df.T.reset_index()
+        dados_grafico.columns = ['Categoria', 'Valor']
+        fig, ax = plt.subplots()
+        ax.bar(dados_grafico['Categoria'], dados_grafico['Valor'], color='skyblue')
+        ax.set_ylabel('Quantidade')
+        ax.set_xlabel('Categoria')
+        ax.set_title('Distribuição por Escolaridade')
+        plt.xticks(rotation=45)
+
+        st.pyplot(fig)
+        
+    elif opcao == "Gráfico de pizza":
+        dados_grafico = df.T.reset_index()
+        dados_grafico.columns = ['Categoria', 'Valor']
+        st.write("Distribuição por categoria")
+        st.pyplot(
+            pd.Series(dados_grafico['Valor'].values, index=dados_grafico['Categoria']).plot.pie(autopct='%1.1f%%', figsize=(6, 6)).figure
+        )
+
+
+    st.subheader("👥 População estimada - IBGE (API)")
+
+    url = "https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/2021/variaveis/9324?localidades=N6[3523909]"
+
+    try:
+        res = requests.get(url)
+        data = res.json()
+
+        municipio = data[0]['resultados'][0]['series'][0]['localidade']['nome']
+        valor = data[0]['resultados'][0]['series'][0]['serie']['2021']
+
+        st.metric(label=f"População de {municipio} (2021)", value=f"{int(valor):,}".replace(",", "."))
+
+
+    except Exception as e:
+        st.error(f"Erro ao consultar a API do IBGE: {e}")
+
+
+
+
+
+    st.subheader("📊 Indicadores educacionais (Banco de Dados)")
 
     try:
         cursor.execute("SELECT * FROM dados_itu LIMIT 1")
@@ -68,30 +112,6 @@ try:
 
     except Exception as e:
         st.error(f"Erro ao exibir indicadores: {e}")
-
-
-    st.subheader("👥 População estimada - IBGE (API)")
-
-    url = "https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/2021/variaveis/9324?localidades=N6[3523909]"
-
-    try:
-        res = requests.get(url)
-        data = res.json()
-
-        municipio = data[0]['resultados'][0]['series'][0]['localidade']['nome']
-        valor = data[0]['resultados'][0]['series'][0]['serie']['2021']
-
-        st.metric(label=f"População de {municipio} (2021)", value=f"{int(valor):,}".replace(",", "."))
-
-
-    except Exception as e:
-        st.error(f"Erro ao consultar a API do IBGE: {e}")
-
-
-
-
-
-    
 
 
 
