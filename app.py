@@ -8,7 +8,7 @@ import streamlit.components.v1 as components
 st.markdown("""
 <style>
 span[data-baseweb="tag"] {
-    background-color: #2563eb !important;
+    background-color: #60a5fa !important; /* Azul claro */ !important;
     color: white !important;
     border-radius: 0.5rem !important;
 }
