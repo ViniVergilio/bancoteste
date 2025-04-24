@@ -122,7 +122,9 @@ try:
             col1, col2, col3, col4, col5, col6 = st.columns(6)
             colunas = [col1, col2, col3, col4, col5, col6]
             for i, (titulo, valor) in enumerate(indicadores.items()):
-                colunas[i % 6].metric(label=titulo, value=f"{valor:,}".replace(",", "."))
+                if titulo in categorias:  # só mostra os selecionados
+                    colunas[i % 6].metric(label=titulo, value=f"{valor:,}".replace(",", "."))
+
 
         elif tipo_visu == "Gráfico de barras":
             import matplotlib.pyplot as plt
