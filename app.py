@@ -85,11 +85,14 @@ try:
 
 
 
-    print()
-    print()
-    print()
-    print()
-    print()
+    st.write("")  # Linha em branco
+    st.write("")  # Linha em branco
+    st.write("")  # Linha em branco
+    st.write("")  # Linha em branco
+    st.write("")  # Linha em branco
+
+
+
 
 
 
