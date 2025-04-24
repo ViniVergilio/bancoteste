@@ -108,6 +108,16 @@ try:
             "Blocos separados", "Gráfico de barras", "Gráfico de pizza"
         ])
 
+        categorias_escolhidas = st.multiselect(
+        "Quais indicadores deseja visualizar?",
+        list(indicadores.keys()),
+        default=list(indicadores.keys())
+        )
+
+        categorias = categorias_escolhidas
+        valores = [indicadores[k] for k in categorias_escolhidas]
+
+
         if tipo_visu == "Blocos separados":
             col1, col2, col3, col4, col5, col6 = st.columns(6)
             colunas = [col1, col2, col3, col4, col5, col6]
@@ -116,14 +126,17 @@ try:
 
         elif tipo_visu == "Gráfico de barras":
             import matplotlib.pyplot as plt
-            fig, ax = plt.subplots()
-            categorias = list(indicadores.keys())
-            valores = list(indicadores.values())
-            ax.bar(categorias, valores, color='skyblue')
+            largura = st.slider("Largura do gráfico", 4, 16, 10)
+            altura = st.slider("Altura do gráfico", 2, 10, 4)
+            cor = st.color_picker("Escolha a cor das barras", "#3399ff")
+
+            fig, ax = plt.subplots(figsize=(largura, altura))
+            ax.bar(categorias, valores, color=cor)
             ax.set_title("Distribuição por categoria")
             ax.set_ylabel("Quantidade")
             plt.xticks(rotation=45)
             st.pyplot(fig)
+
 
         elif tipo_visu == "Gráfico de pizza":
             import matplotlib.pyplot as plt
