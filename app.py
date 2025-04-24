@@ -3,10 +3,11 @@ import mysql.connector
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
+import streamlit.components.v1 as components
 
-st.markdown("""
+
+components.html("""
     <style>
-    /* Ajusta visual do multiselect */
     div[data-baseweb="tag"] {
         background-color: #2563eb !important;
         color: white !important;
@@ -14,13 +15,12 @@ st.markdown("""
         padding: 6px 12px !important;
         font-weight: 600 !important;
     }
-
-    /* Ícone (X) para remover tag */
     div[data-baseweb="tag"] svg {
         stroke: white !important;
     }
     </style>
-""", unsafe_allow_html=True)
+""")
+
 
 
 
