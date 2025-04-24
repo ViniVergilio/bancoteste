@@ -104,14 +104,39 @@ try:
             "Não alfabetizados": linha[10],
         }
 
-        col1, col2, col3 , col4, col5, col6 = st.columns(6)
+        tipo_visu = st.selectbox("Como deseja visualizar os dados educacionais?", [
+            "Blocos separados", "Gráfico de barras", "Gráfico de pizza"
+        ])
 
-        for i, (titulo, valor) in enumerate(indicadores.items()):
-            coluna = [col1, col2, col3, col4, col5,col6][i % 6]
-            coluna.metric(label=titulo, value=f"{valor:,}".replace(",", "."))
+        if tipo_visu == "Blocos separados":
+            col1, col2, col3, col4, col5, col6 = st.columns(6)
+            colunas = [col1, col2, col3, col4, col5, col6]
+            for i, (titulo, valor) in enumerate(indicadores.items()):
+                colunas[i % 6].metric(label=titulo, value=f"{valor:,}".replace(",", "."))
+
+        elif tipo_visu == "Gráfico de barras":
+            import matplotlib.pyplot as plt
+            fig, ax = plt.subplots()
+            categorias = list(indicadores.keys())
+            valores = list(indicadores.values())
+            ax.bar(categorias, valores, color='skyblue')
+            ax.set_title("Distribuição por categoria")
+            ax.set_ylabel("Quantidade")
+            plt.xticks(rotation=45)
+            st.pyplot(fig)
+
+        elif tipo_visu == "Gráfico de pizza":
+            import matplotlib.pyplot as plt
+            fig, ax = plt.subplots()
+            categorias = list(indicadores.keys())
+            valores = list(indicadores.values())
+            ax.pie(valores, labels=categorias, autopct='%1.1f%%', startangle=90)
+            ax.axis("equal")
+            st.pyplot(fig)
 
     except Exception as e:
         st.error(f"Erro ao exibir indicadores: {e}")
+
 
 
 
