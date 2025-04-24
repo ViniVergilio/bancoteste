@@ -4,6 +4,17 @@ import requests
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# CSS customizado para as tags do multiselect
+st.markdown("""
+    <style>
+    div[data-baseweb="tag"] {
+        background-color: #2563eb !important;
+        color: white !important;
+        border-radius: 4px !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # Configurações da conexão
 config = {
     'host': 'bancoteste.c3gegommuogv.sa-east-1.rds.amazonaws.com',
@@ -118,16 +129,6 @@ try:
 
         categorias = categorias_escolhidas
         valores = [indicadores[k] for k in categorias_escolhidas]
-
-        st.markdown("""
-        <style>
-        div[data-baseweb="tag"] {
-            background-color: #2563eb !important;
-            color: white !important;
-            border-radius: 4px !important;
-        }
-        </style>
-        """, unsafe_allow_html=True)
 
 
         if tipo_visu == "Blocos separados":
