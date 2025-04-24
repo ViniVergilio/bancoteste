@@ -104,10 +104,10 @@ try:
             "Não alfabetizados": linha[10],
         }
 
-        col1, col2, col3 , col4, col5 = st.columns(5)
+        col1, col2, col3 , col4, col5, col6 = st.columns(6)
 
         for i, (titulo, valor) in enumerate(indicadores.items()):
-            coluna = [col1, col2, col3, col4, col5][i % 5]
+            coluna = [col1, col2, col3, col4, col5,col6][i % 6]
             coluna.metric(label=titulo, value=f"{valor:,}".replace(",", "."))
 
     except Exception as e:
