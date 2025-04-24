@@ -6,21 +6,22 @@ import matplotlib.pyplot as plt
 
 st.markdown("""
     <style>
-    /* cor de fundo dos itens selecionados */
+    /* Ajusta visual do multiselect */
     div[data-baseweb="tag"] {
         background-color: #2563eb !important;
         color: white !important;
         border-radius: 0.5rem !important;
-        font-weight: bold;
-        padding: 5px 10px;
+        padding: 6px 12px !important;
+        font-weight: 600 !important;
     }
 
-    /* botão "x" de remover */
+    /* Ícone (X) para remover tag */
     div[data-baseweb="tag"] svg {
         stroke: white !important;
     }
     </style>
 """, unsafe_allow_html=True)
+
 
 
 # Configurações da conexão
