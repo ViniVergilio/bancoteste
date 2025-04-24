@@ -87,10 +87,35 @@ try:
 
 
 
-    colunas = st.columns(len(linha))  # cria colunas horizontais
+        st.subheader("📊 Indicadores educacionais (Banco de Dados)")
 
-    for i, (nome, valor) in enumerate(linha.items()):
-        colunas[i].metric(label=nome, value=f"{valor:,}".replace(",", "."))
+        try:
+            cursor.execute("SELECT * FROM dados_itu LIMIT 1")
+            linha = cursor.fetchone()
+
+            indicadores_local = {
+                "Até 1 ano de estudo": linha[3],
+                "1 a 3 anos": linha[4],
+                "4 a 7 anos": linha[5],
+                "8 a 10 anos": linha[6],
+                "11 a 14 anos": linha[7],
+                "15 anos ou mais": linha[8],
+                "Alfabetizados": linha[9],
+                "Não alfabetizados": linha[10],
+            }
+
+            col1, col2, col3 = st.columns(3)
+
+            for i, (titulo, valor) in enumerate(indicadores_local.items()):
+                if i % 3 == 0:
+                    col1.metric(label=titulo, value=f"{valor:,}".replace(",", "."))
+                elif i % 3 == 1:
+                    col2.metric(label=titulo, value=f"{valor:,}".replace(",", "."))
+                else:
+                    col3.metric(label=titulo, value=f"{valor:,}".replace(",", "."))
+
+        except Exception as e:
+            st.error(f"Erro ao carregar dados do banco: {e}")
 
 
         
