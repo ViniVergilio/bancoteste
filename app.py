@@ -33,7 +33,6 @@ st.title("📊 Indicadores de Educação - Itu")
 
 st.write("")  # Linha em branco
 st.write("")  # Linha em branco
-st.write("")  # Linha em branco
 
 try:
     conn = mysql.connector.connect(**config)
@@ -93,12 +92,6 @@ try:
     st.write("")  # Linha em branco
     st.write("")  # Linha em branco
     st.write("")  # Linha em branco
-    st.write("")  # Linha em branco
-
-
-
-
-
 
 
 
@@ -123,16 +116,11 @@ try:
 
 
 
-
-
     st.write("")  # Linha em branco
     st.write("")  # Linha em branco
     st.write("")  # Linha em branco
     st.write("")  # Linha em branco
     st.write("")  # Linha em branco
-
-
-
 
 
 
