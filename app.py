@@ -31,6 +31,10 @@ config = {
 
 st.title("📊 Indicadores de Educação - Itu")
 
+st.write("")  # Linha em branco
+st.write("")  # Linha em branco
+st.write("")  # Linha em branco
+
 try:
     conn = mysql.connector.connect(**config)
     cursor = conn.cursor()
