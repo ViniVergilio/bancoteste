@@ -18,6 +18,16 @@ span[data-baseweb="tag"] svg {
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+div[data-baseweb="slider"] [role="slider"] {
+    background: #60a5fa !important;
+}
+div[data-baseweb="slider"] > div > div {
+    background: #60a5fa !important;
+}
+</style>
+""", unsafe_allow_html=True)
 
 
 
