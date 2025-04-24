@@ -12,15 +12,7 @@ config = {
     'database': 'bancoteste'
 }
 
-st.markdown("""
-    <style>
-    div[data-baseweb="tag"] {
-        background-color: #2563eb !important;
-        color: white !important;
-        border-radius: 4px !important;
-    }
-    </style>
-    """, unsafe_allow_html=True)
+
 
 st.title("📊 Indicadores de Educação - Itu")
 
@@ -126,6 +118,16 @@ try:
 
         categorias = categorias_escolhidas
         valores = [indicadores[k] for k in categorias_escolhidas]
+
+        st.markdown("""
+        <style>
+        div[data-baseweb="tag"] {
+            background-color: #2563eb !important;
+            color: white !important;
+            border-radius: 4px !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
 
 
         if tipo_visu == "Blocos separados":
