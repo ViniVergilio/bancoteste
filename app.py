@@ -163,19 +163,16 @@ try:
 
         elif tipo_visu == "Gráfico de barras":
             import matplotlib.pyplot as plt
-            largura = st.slider("Largura do gráfico", 6, 16, 10)
-            altura = st.slider("Altura do gráfico", 4, 10, 6)
-            cor = st.color_picker("Escolha a cor das barras", "#60a5fa")
 
             col1, col2 = st.columns(2)
 
             with col1:
-                largura = st.slider("Largura do gráfico", 6, 16, 10)
+                largura = st.slider("Largura do gráfico", 6, 16, 10, key="largura_barra")
 
             with col2:
-                altura = st.slider("Altura do gráfico", 4, 10, 6)
+                altura = st.slider("Altura do gráfico", 4, 10, 6, key="altura_barra")
 
-            cor = st.color_picker("Escolha a cor das barras", "#60a5fa")
+            cor = st.color_picker("Escolha a cor das barras", "#60a5fa", key="cor_barra")
 
             fig, ax = plt.subplots(figsize=(largura, altura))
             ax.bar(categorias, valores, color=cor)
@@ -185,6 +182,7 @@ try:
             plt.yticks(fontsize=10)
 
             st.pyplot(fig)
+
 
 
 
