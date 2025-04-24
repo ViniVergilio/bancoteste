@@ -4,7 +4,6 @@ import requests
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# CSS customizado para as tags do multiselect
 st.markdown("""
     <style>
     div[data-baseweb="tag"] {
