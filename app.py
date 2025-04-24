@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import streamlit.components.v1 as components
 
 
-components.html("""
+st.markdown("""
     <style>
     div[data-baseweb="tag"] {
         background-color: #2563eb !important;
@@ -19,7 +19,7 @@ components.html("""
         stroke: white !important;
     }
     </style>
-""")
+""", unsafe_allow_html=True)
 
 
 
