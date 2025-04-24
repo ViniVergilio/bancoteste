@@ -167,10 +167,10 @@ try:
             col1, col2 , cor = st.columns(3)
 
             with col1:
-                largura = st.slider("Largura do gráfico", 6, 16, 10, "#60a5fa" key="largura_barra") 
+                largura = st.slider("Largura do gráfico", 6, 16, 10, key="largura_barra") 
 
             with col2:
-                altura = st.slider("Altura do gráfico", 4, 10, 6, "#60a5fa" key="altura_barra")
+                altura = st.slider("Altura do gráfico", 4, 10, 6, key="altura_barra")
 
             with cor:
                 cor = st.color_picker("Escolha a cor das barras", "#60a5fa", key="cor_barra")
