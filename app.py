@@ -5,20 +5,17 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit.components.v1 as components
 
-
 st.markdown("""
-    <style>
-    div[data-baseweb="tag"] {
-        background-color: #2563eb !important;
-        color: white !important;
-        border-radius: 0.5rem !important;
-        padding: 6px 12px !important;
-        font-weight: 600 !important;
-    }
-    div[data-baseweb="tag"] svg {
-        stroke: white !important;
-    }
-    </style>
+<style>
+span[data-baseweb="tag"] {
+    background-color: #2563eb !important;
+    color: white !important;
+    border-radius: 0.5rem !important;
+}
+span[data-baseweb="tag"] svg {
+    stroke: white !important;
+}
+</style>
 """, unsafe_allow_html=True)
 
 
@@ -88,6 +85,14 @@ try:
         )
 
 
+
+
+
+
+
+
+
+
     st.subheader("👥 População estimada - IBGE (API)")
 
     url = "https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/2021/variaveis/9324?localidades=N6[3523909]"
@@ -104,6 +109,14 @@ try:
 
     except Exception as e:
         st.error(f"Erro ao consultar a API do IBGE: {e}")
+
+
+
+
+
+
+
+
 
 
 
@@ -173,6 +186,11 @@ try:
 
     except Exception as e:
         st.error(f"Erro ao exibir indicadores: {e}")
+
+
+
+
+
 
 
 
