@@ -6,13 +6,22 @@ import matplotlib.pyplot as plt
 
 st.markdown("""
     <style>
+    /* cor de fundo dos itens selecionados */
     div[data-baseweb="tag"] {
         background-color: #2563eb !important;
         color: white !important;
-        border-radius: 4px !important;
+        border-radius: 0.5rem !important;
+        font-weight: bold;
+        padding: 5px 10px;
+    }
+
+    /* botão "x" de remover */
+    div[data-baseweb="tag"] svg {
+        stroke: white !important;
     }
     </style>
 """, unsafe_allow_html=True)
+
 
 # Configurações da conexão
 config = {
