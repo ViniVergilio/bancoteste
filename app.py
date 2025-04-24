@@ -9,7 +9,7 @@ st.markdown("""
 <style>
 span[data-baseweb="tag"] {
     background-color: #60a5fa !important; /* Azul claro */ !important;
-    color: black !important;
+    color: grey !important;
     border-radius: 0.5rem !important;
 }
 span[data-baseweb="tag"] svg {
