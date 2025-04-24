@@ -167,13 +167,25 @@ try:
             altura = st.slider("Altura do gráfico", 4, 10, 6)
             cor = st.color_picker("Escolha a cor das barras", "#60a5fa")
 
+            col1, col2 = st.columns(2)
+
+            with col1:
+                largura = st.slider("Largura do gráfico", 6, 16, 10)
+
+            with col2:
+                altura = st.slider("Altura do gráfico", 4, 10, 6)
+
+            cor = st.color_picker("Escolha a cor das barras", "#60a5fa")
+
             fig, ax = plt.subplots(figsize=(largura, altura))
             ax.bar(categorias, valores, color=cor)
             ax.set_title("Distribuição por categoria", fontsize=14)
             ax.set_ylabel("Quantidade", fontsize=12)
             plt.xticks(rotation=30, fontsize=10)
             plt.yticks(fontsize=10)
+
             st.pyplot(fig)
+
 
 
         elif tipo_visu == "Gráfico de pizza":
